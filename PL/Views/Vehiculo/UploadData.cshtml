@@ -1,0 +1,92 @@
+﻿@model ML.Vehiculo
+@{
+    ViewBag.Title = "UploadData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Carga masiva</h2>
+
+<div class="container">
+
+    @using (Html.BeginForm("UploadData", "Vehiculo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-3 form-control" style="width:550px; height:75px;">
+                <label>Archivo</label>
+                <input type="file" id="fulTxt" name="cargaMasiva" class=" form-control" />
+            </div>
+            @Html.HiddenFor(model => model.Vehiculos)
+            @if (Session["ListVehiculos"] == null)
+            {
+                <div class=" col-md-2">
+                    <button type="submit" class="btn btn-info bi bi-eye "> Visualizar</button>
+
+                </div>
+
+            }
+            else
+            {
+
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success bi bi-save "> Cargar</button>
+
+                </div>
+            }
+        </div>
+        <br />
+
+        <br />
+
+
+    }
+
+    @if (Model.Vehiculos != null)
+    {
+
+        <div class="row">
+            <div class="col-md-11">
+                <div>
+                    <table class="table table-bordered ">
+                        <thead>
+                            <tr>
+                                <th>FechaReclamo</th>
+                                <th>HoraPercanse</th>
+                                <th>TipoPercanse</th>
+                                <th>NumeroPoliza</th>
+                                <th>NombreConductor</th>
+                                <th>ContactoConductor</th>
+                                <th>DetallesVehiculo</th>
+                                <th>DañosPrejuicios</th>
+                                <th>EstimacionReparacion</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (ML.Vehiculo vehiculo in Model.Vehiculos)
+                            {
+
+                                <tr>
+                                    <td>@vehiculo.FechaReclamo</td>
+                                    <td>@vehiculo.HoraPercanse</td>
+                                    <td>@vehiculo.TipoPercanse</td>
+                                    <td>@vehiculo.NumeroPoliza</td>
+                                    <td>@vehiculo.NombreConductor</td>
+                                    <td>@vehiculo.ContactoConductor</td>
+                                    <td>@vehiculo.DetallesVehiculo</td>
+                                    <td>@vehiculo.DañosPrejuicios</td>
+                                    <td>@vehiculo.EstimacionReparacion</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    <br />
+</div>
+
+

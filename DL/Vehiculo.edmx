@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VehiculosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Vehiculo">
+          <Key>
+            <PropertyRef Name="NumeroReclamo" />
+          </Key>
+          <Property Name="NumeroReclamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaReclamo" Type="date" />
+          <Property Name="HoraPercanse" Type="int" />
+          <Property Name="TipoPercanse" Type="varchar" MaxLength="50" />
+          <Property Name="NumeroPoliza" Type="int" />
+          <Property Name="NombreConductor" Type="varchar" MaxLength="50" />
+          <Property Name="ContactoConductor" Type="int" />
+          <Property Name="DetallesVehiculo" Type="varchar" MaxLength="50" />
+          <Property Name="DañosPrejuicios" Type="varchar" MaxLength="50" />
+          <Property Name="EstimacionReparacion" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <Function Name="VehiculoAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaReclamo" Type="varchar" Mode="In" />
+          <Parameter Name="HoraPercanse" Type="int" Mode="In" />
+          <Parameter Name="TipoPercanse" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroPoliza" Type="int" Mode="In" />
+          <Parameter Name="NombreConductor" Type="varchar" Mode="In" />
+          <Parameter Name="ContactoConductor" Type="int" Mode="In" />
+          <Parameter Name="DetallesVehiculo" Type="varchar" Mode="In" />
+          <Parameter Name="DañosPrejuicios" Type="varchar" Mode="In" />
+          <Parameter Name="EstimacionReparacion" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="VehiculoGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="VehiculosModelStoreContainer">
+          <EntitySet Name="Vehiculo" EntityType="Self.Vehiculo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VehiculosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Vehiculo">
+          <Key>
+            <PropertyRef Name="NumeroReclamo" />
+          </Key>
+          <Property Name="NumeroReclamo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaReclamo" Type="DateTime" Precision="0" />
+          <Property Name="HoraPercanse" Type="Int32" />
+          <Property Name="TipoPercanse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroPoliza" Type="Int32" />
+          <Property Name="NombreConductor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactoConductor" Type="Int32" />
+          <Property Name="DetallesVehiculo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DañosPrejuicios" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EstimacionReparacion" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="VehiculosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Vehiculoes" EntityType="Self.Vehiculo" />
+          <FunctionImport Name="VehiculoGetAll" ReturnType="Collection(VehiculosModel.VehiculoGetAll_Result)" />
+          <FunctionImport Name="VehiculoAdd">
+            <Parameter Name="FechaReclamo" Mode="In" Type="String" />
+            <Parameter Name="HoraPercanse" Mode="In" Type="Int32" />
+            <Parameter Name="TipoPercanse" Mode="In" Type="String" />
+            <Parameter Name="NumeroPoliza" Mode="In" Type="Int32" />
+            <Parameter Name="NombreConductor" Mode="In" Type="String" />
+            <Parameter Name="ContactoConductor" Mode="In" Type="Int32" />
+            <Parameter Name="DetallesVehiculo" Mode="In" Type="String" />
+            <Parameter Name="DañosPrejuicios" Mode="In" Type="String" />
+            <Parameter Name="EstimacionReparacion" Mode="In" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="VehiculoGetAll_Result">
+          <Property Type="Int32" Name="NumeroReclamo" Nullable="false" />
+          <Property Type="DateTime" Name="FechaReclamo" Nullable="true" />
+          <Property Type="Int32" Name="HoraPercanse" Nullable="true" />
+          <Property Type="String" Name="TipoPercanse" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="NumeroPoliza" Nullable="true" />
+          <Property Type="String" Name="NombreConductor" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ContactoConductor" Nullable="true" />
+          <Property Type="String" Name="DetallesVehiculo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DañosPrejuicios" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="EstimacionReparacion" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VehiculosModelStoreContainer" CdmEntityContainer="VehiculosEntities">
+          <EntitySetMapping Name="Vehiculoes">
+            <EntityTypeMapping TypeName="VehiculosModel.Vehiculo">
+              <MappingFragment StoreEntitySet="Vehiculo">
+                <ScalarProperty Name="NumeroReclamo" ColumnName="NumeroReclamo" />
+                <ScalarProperty Name="FechaReclamo" ColumnName="FechaReclamo" />
+                <ScalarProperty Name="HoraPercanse" ColumnName="HoraPercanse" />
+                <ScalarProperty Name="TipoPercanse" ColumnName="TipoPercanse" />
+                <ScalarProperty Name="NumeroPoliza" ColumnName="NumeroPoliza" />
+                <ScalarProperty Name="NombreConductor" ColumnName="NombreConductor" />
+                <ScalarProperty Name="ContactoConductor" ColumnName="ContactoConductor" />
+                <ScalarProperty Name="DetallesVehiculo" ColumnName="DetallesVehiculo" />
+                <ScalarProperty Name="DañosPrejuicios" ColumnName="DañosPrejuicios" />
+                <ScalarProperty Name="EstimacionReparacion" ColumnName="EstimacionReparacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="VehiculoGetAll" FunctionName="VehiculosModel.Store.VehiculoGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VehiculosModel.VehiculoGetAll_Result">
+                <ScalarProperty Name="NumeroReclamo" ColumnName="NumeroReclamo" />
+                <ScalarProperty Name="FechaReclamo" ColumnName="FechaReclamo" />
+                <ScalarProperty Name="HoraPercanse" ColumnName="HoraPercanse" />
+                <ScalarProperty Name="TipoPercanse" ColumnName="TipoPercanse" />
+                <ScalarProperty Name="NumeroPoliza" ColumnName="NumeroPoliza" />
+                <ScalarProperty Name="NombreConductor" ColumnName="NombreConductor" />
+                <ScalarProperty Name="ContactoConductor" ColumnName="ContactoConductor" />
+                <ScalarProperty Name="DetallesVehiculo" ColumnName="DetallesVehiculo" />
+                <ScalarProperty Name="DañosPrejuicios" ColumnName="DañosPrejuicios" />
+                <ScalarProperty Name="EstimacionReparacion" ColumnName="EstimacionReparacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VehiculoAdd" FunctionName="VehiculosModel.Store.VehiculoAdd" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,20 @@
+﻿@model ML.Vehiculo
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Vehiculo GetAll</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 ">
+
+            @Html.ActionLink(" Carga masiva ", "UploadData", "Vehiculo", new { @class = "btn btn-primary bi bi-database-fill-up" })
+
+        </div>
+    </div>
+</div>
